@@ -1,10 +1,14 @@
+/* eslint-disable react/no-unescaped-entities */
+import varada from "../assets/varada.jpg";
+import { Link } from "react-router-dom";
+
 function About() {
   return (
-    <section className="bg-gray-900 py-12 text-white">
-      <div className="flex items-center">
+    <section className="bg-gradient-to-tr from-slate-900 to-gray-950 py-12 text-white">
+      <div className=" items-center p-4 md:p-1">
         <div className="w-16 h-16 rounded-full overflow-hidden shadow-md mr-4">
           <img
-            src="https://picsum.photos/id/1015/400/400"
+            src={varada}
             alt="Your Name"
             className="w-full h-full object-cover"
           />
@@ -12,23 +16,50 @@ function About() {
 
         <div>
           <h3 className="text-xl font-bold mb-2">Varadaraj Acharya</h3>
-          <p className="text-gray-400">Full Stack Developer</p>
+          <p className="text-gray-400">Tech Enthusiastic Student</p>
         </div>
       </div>
-      <hr className="border-gray-700 mt-4 p-2 border-t-2" />
-      <div className="container mx-auto px-2">
+      <hr className="border-gray-700 mt-4 border-t-2" />
+      <div className="container p-3 bg-slate-900 rounded-b-xl w-full">
         <div className="flex flex-col md:flex-row items-center">
           <div className="w-full md:w-2/3">
             <h2 className="text-4xl font-bold mb-4">About Me</h2>
             <p className="text-lg leading-relaxed mb-6">
-              Hi, I am Your Name. I am a Full Stack Developer with a passion for
-              creating user-friendly and efficient web applications. I have a
-              strong background in JavaScript, React, Node.js, and Python. My
-              career goal is to become a Full Stack Engineer and contribute to
-              the development of innovative and impactful web applications.
+              Hey there! I'm Varadaraj Acharya, a BCA student at Mahathma Gandhi
+              Memorial College, Udupi. I'm passionate about web development and
+              currently diving deep into the MERN stack - that's MongoDB,
+              Express.js, React.js, and Node.js.
+            </p>{" "}
+            <p className="text-lg leading-relaxed mb-6">
+              Driven by curiosity and fueled by a relentless desire to learn, I
+              thrive on challenges and embrace new technologies with enthusiasm.
+              My journey as a developer has honed my adaptability, allowing me
+              to seamlessly integrate new tools and concepts into my repertoire.
+              Whether it's crafting elegant front-end experiences with React.js
+              or architecting robust back-end solutions with Node.js, I'm always
+              eager to push boundaries and explore the ever-evolving landscape
+              of web development.
             </p>
           </div>
         </div>
+      </div>
+      <div className="flex justify-center mt-8">
+        <Link
+          to="/projects"
+          className="px-4 py-2 bg-white text-slate-900 font-bold rounded-md shadow-md hover:bg-gray-200 transition-colors"
+        >
+          View My Projects
+        </Link>
+      </div>
+      <div className="flex justify-center mt-8">
+        <Link
+          to="https://www.instagram.com/_.macro_world._?igsh=MW93Zmg5MnJwNHdteA=="
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 bg-transparent text-slate-500 font-bold rounded-md shadow-md"
+        >
+          &#129431; Visit My Macro Photography Page &#129431;
+        </Link>
       </div>
     </section>
   );

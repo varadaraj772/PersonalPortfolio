@@ -5,7 +5,7 @@ function Header() {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <header className="bg-slate-950 text-white px-8 py-4 flex justify-between shadow-md">
+    <header className="bg-slate-950 text-white px-8 py-4 flex justify-between shadow-md ">
       <div className="flex items-center space-x-4">
         <h1
           className={`${

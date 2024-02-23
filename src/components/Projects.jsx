@@ -1,51 +1,70 @@
 function Projects() {
   const projects = [
     {
-      title: "Project 1",
-      description: "Brief project description",
-      link: "https://example.com",
-      image: "chrome://branding/content/about-logo@2x.png", // Placeholder image for Project 1
+      title: "Personal Portfolio",
+      description: "My peerosnal portfolio website",
+      link: "https://personal-portfolio-varadaraj-s-projects.vercel.app/",
+      technologies: ["React Js - ", "Tailwind CSS - ", "React Router"],
+    },
+    {
+      title: "Nise Computer Education",
+      description:
+        "A simple website for Nise Computer Eduation Institute,Udupi",
+      link: "https://nise-computers.vercel.app/",
+      technologies: ["React Js - ", "Tailwind CSS - ", "React Router"],
+    },
+    {
+      title: "Password Generator & Manager",
+      description:
+        "One stop solution where you can generate password and save it to your account",
+      link: "https://github.com/varadaraj772/Password_generator_manager.git",
+      technologies: ["HTML - ", "Bootstrap - ", "Firebase"],
+    },
+    {
+      title: "Basic Twitter Clone",
+      description: "Replica of Twitter",
+      link: "https://github.com/varadaraj772/TWITTER-CLONE.git",
       technologies: [
-        {
-          name: "React",
-          icon: "chrome://branding/content/about-logo@2x.png",
-        },
-        {
-          name: "Tailwind CSS",
-          icon: "chrome://branding/content/about-logo@2x.png",
-        },
+        "PHP - ",
+        "MySQL - ",
+        "HTML - ",
+        "CSS - ",
+        "BootStrap -",
+        "JavaScript",
       ],
     },
-    // Add other projects...
+    {
+      title: "Random Quote Generator",
+      description:
+        "Gives you a random Quote everytime you hit generate button and one click to copy code",
+      link: "https://random-quote-generator-ivory.vercel.app/",
+      technologies: ["React Js - ", "RandomQuote API - ", "JavaScript"],
+    },
+    {
+      title: "CLOCK",
+      description: "A Simple Clock with Timer & Stopwatch functionality",
+      link: "https://varadaraj772.github.io/CLOCK/",
+      technologies: ["HTML - ", "CSS - ", "JavaScript"],
+    },
   ];
-
   return (
-    <section className="bg-gradient-to-tr from-slate-950 to-gray-900 py-12 text-white">
+    <section className="bg-gradient-to-tr from-slate-900 to-gray-950 py-12 text-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-4">Projects</h2>
         <ul className="grid gap-4 auto-fit min-max(300px, 1fr)">
           {projects.map((project) => (
             <li
               key={project.title}
-              className="bg-gray-800 shadow rounded-md p-4 hover:bg-gray-700"
+              className="bg-gray-800 shadow rounded-t-xl p-4 hover:bg-gray-700"
             >
               <h3 className="text-lg font-bold mb-2 text-indigo-500">
                 {project.title}
               </h3>
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-20 h-20 mb-2 rounded-md"
-              />
               <p className="text-gray-300">{project.description}</p>
               <div className="flex items-center">
-                {project.technologies.map((tech) => (
-                  <span key={tech.name} className="mr-2 text-gray-400">
-                    <img
-                      src={tech.icon}
-                      alt={tech.name}
-                      className="w-6 h-6 mr-1"
-                    />
+                {project.technologies.map((name) => (
+                  <span key={name} className="mr-2 text-gray-400">
+                    {name}
                   </span>
                 ))}
               </div>
