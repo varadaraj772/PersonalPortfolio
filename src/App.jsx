@@ -6,11 +6,13 @@ import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Nav from "./components/Nav";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
+      <Nav />
       <Routes>
         <Route path="/" element={<About />} />
         <Route path="/projects" element={<Projects />} />

@@ -35,9 +35,11 @@ function Skills() {
     },
   ];
   return (
-    <section className="bg-gradient-to-tr from-slate-950 to-gray-900 text-yellow-600 py-12">
+    <section className="bg-gradient-to-tr from-slate-950 to-gray-900 text-green-600 py-12">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">Skills</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center text-white">
+          Skills
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           <div className="p-4">
             <h3 className="text-2xl font-bold mb-4">Programming Languages</h3>
@@ -49,7 +51,10 @@ function Skills() {
                 .map((category) => (
                   <div key={category.category}>
                     {category.skills.map((skill) => (
-                      <div key={skill.name} className="flex items-center mb-4">
+                      <div
+                        key={skill.name}
+                        className="flex items-center mb-4 text-green-400"
+                      >
                         <img
                           src={skill.logo}
                           alt={skill.name}
@@ -84,12 +89,9 @@ function Skills() {
                           className="w-12 h-12 mr-4"
                         />
                         <div>
-                          <h4 className="text-lg font-bold mb-1">
+                          <h4 className="text-lg font-bold mb-1 text-green-400">
                             {skill.name}
                           </h4>
-                          <p className="text-sm text-gray-600">
-                            {skill.proficiency}
-                          </p>
                         </div>
                       </div>
                     ))}

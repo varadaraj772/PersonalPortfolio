@@ -24,14 +24,7 @@ function Projects() {
       title: "Basic Twitter Clone",
       description: "Replica of Twitter",
       link: "https://github.com/varadaraj772/TWITTER-CLONE.git",
-      technologies: [
-        "PHP - ",
-        "MySQL - ",
-        "HTML - ",
-        "CSS - ",
-        "BootStrap -",
-        "JavaScript",
-      ],
+      technologies: ["PHP -", "MySQL -", "BootStrap -", "JavaScript"],
     },
     {
       title: "Random Quote Generator",
@@ -57,7 +50,7 @@ function Projects() {
               key={project.title}
               className="bg-gray-800 shadow rounded-t-xl p-4 hover:bg-gray-700"
             >
-              <h3 className="text-lg font-bold mb-2 text-indigo-500">
+              <h3 className="text-lg font-bold mb-2 text-green-500">
                 {project.title}
               </h3>
               <p className="text-gray-300">{project.description}</p>
