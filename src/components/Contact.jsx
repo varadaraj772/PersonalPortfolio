@@ -1,4 +1,5 @@
 import { FaEnvelope, FaPhone, FaFileDownload } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Contact() {
   return (
@@ -29,14 +30,22 @@ function Contact() {
       </div>
       <div className="flex justify-center mt-8">
         <a
-          href="../assets/resume.pdf"
-          download="resume.pdf"
-          rel="noopener noreferrer"
+          href="https://drive.google.com/file/d/1AGQ87Wq057N0fNQ-JJTgfzp6s2hxjzuh/view?usp=sharing/"
           className="px-4 py-2 bg-transparent text-red-500 font-bold rounded-md shadow-md underline"
         >
           <FaFileDownload className="inline-block mr-1" />
           Download My Resume
         </a>
+      </div>
+      <div className="flex justify-center mt-8">
+        <Link
+          to="https://www.instagram.com/_.macro_world._?igsh=MW93Zmg5MnJwNHdteA=="
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 bg-transparent text-slate-500 font-bold rounded-md shadow-md underline"
+        >
+          &#129431; Visit My Macro Photography Page &#129431;
+        </Link>
       </div>
     </section>
   );
