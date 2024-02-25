@@ -15,7 +15,8 @@ function Footer() {
           rel="noopener noreferrer"
           className="text-gray-300 hover:text-white transition-colors duration-200"
         >
-          <FaLinkedin className="inline-block mr-1" /><p></p>Varada
+          <FaLinkedin className="inline-block mr-1" />
+          Varada
         </a>
         <a
           href="https://github.com/varadaraj772"
@@ -45,6 +46,7 @@ function Footer() {
           _.macro_world._
         </a>
       </div>
+
     </footer>
   );
 }

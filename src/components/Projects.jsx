@@ -2,14 +2,14 @@ function Projects() {
   const projects = [
     {
       title: "Personal Portfolio",
-      description: "My peerosnal portfolio website",
+      description: "My perosnal portfolio website",
       link: "https://personal-portfolio-varadaraj-s-projects.vercel.app/",
       technologies: ["React Js - ", "Tailwind CSS - ", "React Router"],
     },
     {
       title: "Nise Computer Education",
       description:
-        "A simple website for Nise Computer Eduation Institute,Udupi",
+        "(In Development) A simple website for Nise Computer Eduation Institute,Udupi",
       link: "https://nise-computers.vercel.app/",
       technologies: ["React Js - ", "Tailwind CSS - ", "React Router"],
     },
