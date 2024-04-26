@@ -21,7 +21,7 @@ function About() {
         >
           <img
             src={varada}
-            alt="Your Name"
+            alt="Varadaraj"
             className="w-full h-full object-cover"
           />
         </motion.div>
