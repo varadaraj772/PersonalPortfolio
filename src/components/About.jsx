@@ -1,57 +1,26 @@
 /* eslint-disable react/no-unescaped-entities */
-import { motion } from "framer-motion";
 import varada from "../assets/varada.jpg";
 import { Link } from "react-router-dom";
 import { FaFileDownload } from "react-icons/fa";
 
 function About() {
   return (
-    <motion.section
-      className="bg-gradient-to-tr from-slate-900 to-gray-950 py-12 text-white"
-      initial={{ backgroundColor: "#333" }}
-      animate={{ backgroundColor: "#111" }}
-      transition={{ duration: 1 }}
-    >
-      <div className="items-center p-4 md:p-1">
-        <motion.div
-          className="w-16 h-16 rounded-full overflow-hidden shadow-md mr-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-        >
+    <section className="bg-gradient-to-tr from-slate-900 to-gray-950 py-12 text-white">
+      <div className="items-center p-4 md:p-1 flex flex-col md:flex-row">
+        <div className="w-16 h-16 rounded-full overflow-hidden shadow-md mr-4">
           <img
             src={varada}
             alt="Varadaraj"
             className="w-full h-full object-cover"
           />
-        </motion.div>
-
+        </div>
         <div>
-          <motion.h3
-            className="text-xl font-bold mb-2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 1 }}
-          >
-            Varadaraj Acharya
-          </motion.h3>
-          <motion.p
-            className="text-gray-400"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 1 }}
-          >
-            Tech Enthusiastic Student
-          </motion.p>
+          <h3 className="text-xl font-bold mb-2">Varadaraj Acharya</h3>
+          <p className="text-gray-400">Tech Enthusiastic Student</p>
         </div>
       </div>
       <hr className="border-gray-700 mt-4 border-t-2" />
-      <motion.div
-        className="container p-3 bg-slate-900 rounded-b-xl w-full"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
-      >
+      <div className="container p-3 bg-slate-900 rounded-b-xl w-full">
         <div className="container p-3 bg-slate-900 rounded-b-xl w-full">
           <div className="flex flex-col md:flex-row items-center">
             <div className="w-full md:w-2/3">
@@ -59,12 +28,11 @@ function About() {
                 About Me
               </h2>
               <p className="text-lg leading-relaxed mb-6">
-                Hey there! I'm Varadaraj Acharya,
-                <br />A BCA student at Mahathma Gandhi Memorial College, Udupi.
-                I'm passionate about web development and currently diving deep
-                into the MERN stack - that's MongoDB, Express.js, React.js, and
-                Node.js.
-              </p>{" "}
+                Hey there! I'm Varadaraj Acharya, a BCA student at Mahathma
+                Gandhi Memorial College, Udupi. I'm passionate about web
+                development and currently diving deep into the MERN stack
+                (MongoDB, Express.js, React.js, and Node.js).
+              </p>
               <p className="text-lg leading-relaxed mb-6">
                 Driven by curiosity and fueled by a relentless desire to learn,
                 I thrive on challenges and embrace new technologies with
@@ -78,25 +46,18 @@ function About() {
             </div>
           </div>
         </div>
-      </motion.div>
-      <div className="flex justify-center mt-8">
-        <Link
-          to="/projects"
-          className="px-4 py-2 bg-green-200 text-slate-900 font-bold rounded-md shadow-md hover:bg-gray-200 transition-colors"
-        >
-          View My Projects
-        </Link>
       </div>
+
       <div className="flex justify-center mt-8">
         <a
-          href="https://drive.google.com/file/d/1AGQ87Wq057N0fNQ-JJTgfzp6s2hxjzuh/view?usp=sharing/"
+          href="https://drive.google.com/file/d/1aNgdmeUDGa-yI4S94EZHAh7RtMLOCNAc/view?usp=sharing"
           className="px-4 py-2 bg-transparent text-red-500 font-bold rounded-md shadow-md underline"
         >
           <FaFileDownload className="inline-block mr-1" />
           Download My Resume
         </a>
       </div>
-    </motion.section>
+    </section>
   );
 }
 
