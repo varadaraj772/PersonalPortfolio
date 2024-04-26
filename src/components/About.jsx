@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 import varada from "../assets/varada.jpg";
-import { Link } from "react-router-dom";
 import { FaFileDownload } from "react-icons/fa";
 
 function About() {
