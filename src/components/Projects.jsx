@@ -19,7 +19,7 @@ function Projects() {
     {
       title: "CaptionCraft.AI",
       description: "Ai caption generator for images",
-      link: "captioncraftai-varadaraj-s-projects.vercel.app",
+      link: "https://captioncraftai-varadaraj-s-projects.vercel.app/",
       technologies: ["React Js", "Gen AI", "Tailwind CSS"],
       img: capcraft,
     },
