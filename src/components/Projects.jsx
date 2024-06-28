@@ -5,6 +5,7 @@ import nise from "../assets/nise.png";
 import passw from "../assets/password.png";
 import x from "../assets/x.png";
 import quote from "../assets/quote.png";
+import capcraft from "../assets/captioncraft.png";
 
 function Projects() {
   const projects = [
@@ -14,6 +15,13 @@ function Projects() {
       link: "https://github.com/varadaraj772/nexus",
       technologies: ["React Native", "Firebase", "TypeScript"],
       img: nexus,
+    },
+    {
+      title: "CaptionCraft.AI",
+      description: "Ai caption generator for images",
+      link: "captioncraftai-varadaraj-s-projects.vercel.app",
+      technologies: ["React Js", "Gen AI", "Tailwind CSS"],
+      img: capcraft,
     },
     {
       title: "Personal Portfolio",
