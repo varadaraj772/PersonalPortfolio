@@ -56,7 +56,7 @@ function Skills() {
                       alt={skill.name}
                       className="w-16 h-16 mr-4 object-contain rounded"
                     />
-                    <p className="font-bold text-green-400">
+                    <p className="font-semibold text-sm text-green-400">
                       {skill.name}
                     </p>
                   </div>
