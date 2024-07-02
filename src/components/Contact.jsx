@@ -31,16 +31,16 @@ function Contact() {
           </div>
           <div>
             <p className="text-gray-400 mb-4">
-              Check out my Macro Photography page on Instagram:
+              Let's connect in LinkedIn 
             </p>
             <a
-              href="https://www.instagram.com/_.macro_world._?igsh=MW93Zmg5MnJwNHdteA=="
+              href="https://www.linkedin.com/in/varada-raj"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center text-green-300 hover:text-green-100 transition-colors duration-200"
             >
               <FaInstagram className="inline-block mr-2" />
-              _.macro_world._ (Macro Photography)
+              Varadaraj Acharya 
             </a>
           </div>
         </div>
