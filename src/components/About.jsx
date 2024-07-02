@@ -63,7 +63,7 @@ function About() {
 
       <div className="flex justify-center mt-8">
         <a
-          href="https://drive.google.com/file/d/1aNgdmeUDGa-yI4S94EZHAh7RtMLOCNAc/view?usp=sharing"
+          href="https://drive.google.com/file/d/1iFSXvGfO63UyQRqV_xZmk6OXl-e4mPKW/view?usp=drive_link"
           className="px-4 py-2 bg-transparent text-red-500 font-bold rounded-md shadow-md underline"
         >
           <FaFileDownload className="inline-block mr-1" />
