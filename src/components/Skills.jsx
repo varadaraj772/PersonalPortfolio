@@ -45,7 +45,7 @@ function Skills() {
               key={category.category}
               className="p-6 rounded-lg shadow-lg  bg-slate-800"
             >
-              <h3 className="text-2xl font-bold mb-6 text-green-300">
+              <h3 className="text-lg font-bold mb-6 text-green-300">
                 {category.category}
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
@@ -56,9 +56,9 @@ function Skills() {
                       alt={skill.name}
                       className="w-16 h-16 mr-4 object-contain rounded"
                     />
-                    <h4 className="text-md font-bold text-green-400">
+                    <h5 className="text-md font-bold text-green-400">
                       {skill.name}
-                    </h4>
+                    </h5>
                   </div>
                 ))}
               </div>
