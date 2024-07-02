@@ -9,6 +9,7 @@ import py from "../assets/python.png";
 import php from "../assets/php.png";
 import fire from "../assets/firebase.png";
 import sql from "../assets/sql.png";
+import mern from "../assets/MERN-logo.png";
 import react_native from "../assets/react_native.png";
 
 function Skills() {
@@ -26,7 +27,7 @@ function Skills() {
       category: "Technologies",
       skills: [
         { name: "REACT NATIVE", logo: react_native },
-        { name: "REACT JS", logo: react },
+        { name: "MERN", logo: mern },
         { name: "FIREBASE", logo: fire },
         { name: "MySQL", logo: sql },
         { name: "TAILWIND CSS", logo: tail },
@@ -56,7 +57,7 @@ function Skills() {
                     <img
                       src={skill.logo}
                       alt={skill.name}
-                      className="w-14 h-14 mr-4 object-cover rounded"
+                      className="w-26 h-14 mr-4 object-cover rounded"
                     />
                     <h4 className="text-lg font-bold text-green-400">
                       {skill.name}
