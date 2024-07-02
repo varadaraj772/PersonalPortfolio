@@ -1,4 +1,4 @@
-import { FaEnvelope, FaPhone, FaInstagram } from "react-icons/fa";
+import { FaEnvelope, FaPhone,FaLinkedin } from "react-icons/fa";
 
 function Contact() {
   return (
@@ -39,7 +39,7 @@ function Contact() {
               rel="noopener noreferrer"
               className="flex items-center text-green-300 hover:text-green-100 transition-colors duration-200"
             >
-              <FaInstagram className="inline-block mr-2" />
+              <FaLinkedin className="inline-block mr-2" />
               Varadaraj Acharya 
             </a>
           </div>
