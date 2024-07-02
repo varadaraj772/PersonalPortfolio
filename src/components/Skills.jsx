@@ -1,8 +1,5 @@
-import html5 from "../assets/html5.png";
-import css3 from "../assets/css-3.png";
 import js from "../assets/js.png";
 import java from "../assets/java.png";
-import react from "../assets/react.png";
 import tail from "../assets/Tailwind.png";
 import bootstrap from "../assets/bootstrap.png";
 import py from "../assets/python.png";
@@ -46,18 +43,18 @@ function Skills() {
           {techSkills.map((category) => (
             <div
               key={category.category}
-              className="p-4 rounded-lg shadow shadow-gray-700 bg-slate-800"
+              className="p-6 rounded-lg shadow-lg  bg-slate-800"
             >
-              <h3 className="text-2xl font-bold mb-4 text-green-300">
+              <h3 className="text-2xl font-bold mb-6 text-green-300">
                 {category.category}
               </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
                 {category.skills.map((skill) => (
                   <div key={skill.name} className="flex items-center">
                     <img
                       src={skill.logo}
                       alt={skill.name}
-                      className="w-26 h-14 mr-4 object-cover rounded"
+                      className="w-16 h-16 mr-4 object-contain rounded"
                     />
                     <h4 className="text-lg font-bold text-green-400">
                       {skill.name}
