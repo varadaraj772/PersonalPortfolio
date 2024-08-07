@@ -25,9 +25,7 @@ function About() {
         <div className="text-center md:text-left">
           <h2 className="text-4xl font-bold mb-4 text-green-500">About Me</h2>
           <p className="text-lg leading-relaxed mb-6">
-            Hey there! I'm Varadaraj Acharya, a BCA student at Mahathma Gandhi
-            Memorial College, Udupi. I'm passionate about web development and
-            currently diving deep into the MERN stack and REACT NATIVE.
+            Hey there! I'm Varadaraj Acharya, a React Native Developer.
           </p>
           <section className="about-me">
             <p className="text-lg leading-relaxed mb-6">
