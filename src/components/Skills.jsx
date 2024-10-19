@@ -10,6 +10,7 @@ import fire from "../assets/firebase.png";
 import sql from "../assets/sql.png";
 import mern from "../assets/MERN-logo.png";
 import react_native from "../assets/react_native.png";
+
 const Skills = () => {
   const [skills] = useState([
     { name: "JAVA", logo: java },
@@ -24,76 +25,107 @@ const Skills = () => {
     { name: "BOOTSTRAP", logo: bootstrap },
   ]);
 
-  const [tiltValues, setTiltValues] = useState({ x: 0, y: 0 });
-  const controls = useAnimation();
+  const [isEntranceComplete, setIsEntranceComplete] = useState(false);
+  const [positions, setPositions] = useState([]);
+  const controls = Array(skills.length).fill(null).map(() => useAnimation());
+
+  // Initialize random positions
+  useEffect(() => {
+    const newPositions = skills.map(() => ({
+      x: Math.random() * (window.innerWidth - 200),
+      y: Math.random() * (window.innerHeight - 200),
+    }));
+    setPositions(newPositions);
+  }, []);
 
   // Handle device tilt
   useEffect(() => {
-    const handleOrientation = (event) => {
-      const x = event.beta ? event.beta / 180 : 0; // Convert to normalized value
-      const y = event.gamma ? event.gamma / 90 : 0; // Convert to normalized value
-      setTiltValues({ x, y });
+    if (!isEntranceComplete) return;
+
+    const handleTilt = (event) => {
+      if (!event.gamma || !event.beta) return;
+
+      const tiltX = event.gamma / 90; // -1 to 1
+      const tiltY = event.beta / 180; // -1 to 1
+
+      skills.forEach((_, index) => {
+        const newX = positions[index].x + (tiltX * 15);
+        const newY = positions[index].y + (tiltY * 15);
+
+        controls[index].start({
+          x: Math.max(0, Math.min(window.innerWidth - 100, newX)),
+          y: Math.max(0, Math.min(window.innerHeight - 100, newY)),
+          transition: { duration: 0.1 }
+        });
+      });
     };
 
-    // Check if device orientation is supported
-    if (window.DeviceOrientationEvent) {
-      window.addEventListener('deviceorientation', handleOrientation);
-    }
+    // Handle mouse movement for desktop
+    const handleMouseMove = (event) => {
+      const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+      const mouseY = (event.clientY / window.innerHeight) * 2 - 1;
+
+      skills.forEach((_, index) => {
+        const newX = positions[index].x + (mouseX * 30);
+        const newY = positions[index].y + (mouseY * 30);
+
+        controls[index].start({
+          x: Math.max(0, Math.min(window.innerWidth - 100, newX)),
+          y: Math.max(0, Math.min(window.innerHeight - 100, newY)),
+          transition: { duration: 0.5 }
+        });
+      });
+    };
+
+    window.addEventListener('deviceorientation', handleTilt);
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      if (window.DeviceOrientationEvent) {
-        window.removeEventListener('deviceorientation', handleOrientation);
-      }
+      window.removeEventListener('deviceorientation', handleTilt);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [isEntranceComplete, positions, controls]);
 
-  // Handle mouse movement for desktop
+  // Start floating animation after entrance
   useEffect(() => {
-    const handleMouseMove = (event) => {
-      const x = (event.clientY / window.innerHeight - 0.5) * 2;
-      const y = (event.clientX / window.innerWidth - 0.5) * 2;
-      setTiltValues({ x, y });
+    if (!isEntranceComplete) return;
+
+    const startFloating = () => {
+      skills.forEach((_, index) => {
+        const randomX = Math.random() * (window.innerWidth - 200);
+        const randomY = Math.random() * (window.innerHeight - 200);
+
+        controls[index].start({
+          x: randomX,
+          y: randomY,
+          transition: {
+            duration: 5 + Math.random() * 5,
+            ease: "easeInOut",
+          },
+        });
+      });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    const floatingInterval = setInterval(startFloating, 5000);
+    startFloating(); // Initial floating
 
-  // Floating animation
-  useEffect(() => {
-    const startFloating = async () => {
-      await controls.start("visible"); // First complete the entrance animation
+    return () => clearInterval(floatingInterval);
+  }, [isEntranceComplete, controls]);
 
-      // Then start the floating animation
-      controls.start((i) => ({
-        x: `${Math.sin((Date.now() + i * 1000) / 2000) * 100 + tiltValues.y * 50}px`,
-        y: `${Math.cos((Date.now() + i * 1000) / 2000) * 100 + tiltValues.x * 50}px`,
-        transition: {
-          duration: 0.1,
-          repeat: Infinity,
-          repeatType: "reverse",
-        },
-      }));
-    };
-
-    startFloating();
-  }, [controls, tiltValues]);
-
-  // Variants for animations
+  // Entrance animation variants
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
         staggerChildren: 0.2,
+        delayChildren: 0.3,
+        when: "beforeChildren",
       },
     },
   };
 
   const skillVariants = {
-    hidden: {
-      y: 1000,
-      opacity: 0,
-    },
+    hidden: { y: 1000, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
@@ -106,7 +138,7 @@ const Skills = () => {
   };
 
   return (
-    <section className="bg-transparent text-white h-screen overflow-hidden relative">
+    <section className="bg-gray-900 text-white h-screen overflow-hidden relative">
       <motion.h2
         className="text-4xl md:text-5xl font-extrabold pt-8 mb-12 text-center"
         initial={{ opacity: 0, y: -50 }}
@@ -119,40 +151,43 @@ const Skills = () => {
       </motion.h2>
 
       <motion.div
-        className="flex justify-center items-center flex-wrap gap-8 relative h-[70vh]"
+        className="relative h-[70vh]"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        onAnimationComplete={() => setIsEntranceComplete(true)}
       >
         {skills.map((skill, index) => (
           <motion.div
             key={skill.name}
-            custom={index}
+            className="absolute left-1/2 top-1/2"
             variants={skillVariants}
-            className="absolute"
-            style={{
-              left: `${(index % 5) * 20 + 10}%`,
-              top: `${Math.floor(index / 5) * 25 + 20}%`,
-            }}
+            animate={controls[index]}
             whileHover={{
               scale: 1.2,
-              zIndex: 10,
+              zIndex: 50,
               transition: { duration: 0.3 },
             }}
+            drag
+            dragConstraints={{
+              left: -50,
+              right: 50,
+              top: -50,
+              bottom: 50,
+            }}
+            dragElastic={0.1}
           >
             <div className="group relative">
               <motion.div
-                className="absolute -inset-1 rounded-lg  blur-sm group-hover:opacity-75 transition duration-300"
+                className="absolute -inset-1 rounded-lg bg-gradient-to-r from-green-600 to-green-400 opacity-0 blur-sm group-hover:opacity-75 transition duration-300"
               />
-              <div className="relative bg-transparent rounded-lg p-2">
+              <div className="relative bg-gray-900 rounded-lg p-2">
                 <motion.img
                   src={skill.logo}
                   alt={skill.name}
                   className="w-16 h-16 object-contain"
                 />
-                <motion.p
-                  className="text-center mt-2 font-semibold text-sm text-green-400"
-                >
+                <motion.p className="text-center mt-2 font-semibold text-sm text-green-400">
                   {skill.name}
                 </motion.p>
               </div>
