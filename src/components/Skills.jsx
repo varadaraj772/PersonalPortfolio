@@ -75,7 +75,7 @@ function Skills() {
             id="gradient-text"
             className="bg-gradient-to-r from-green-300 via-green-500 to-green-700 bg-clip-text text-transparent transition-all duration-300 ease-out"
           >
-            My Projects
+            My SkillSet
           </span>
         </motion.h2>
         {/* Floating Skills */}
