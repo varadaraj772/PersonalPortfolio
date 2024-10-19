@@ -13,7 +13,6 @@ function App() {
   useEffect(() => {
     const handleMouseMove = (e) => {
       const { clientX, clientY } = e;
-      // Set background position based on cursor position
       setBackgroundPosition(`${clientX}px ${clientY}px`);
     };
 
@@ -29,7 +28,7 @@ function App() {
       className="min-h-screen"
       style={{
         background: `radial-gradient(circle at ${backgroundPosition},rgba(50, 23, 42, 1),  rgba(0, 0, 0, 1))`,
-        transition: "background 0.1s ease-out", // Faster transition for responsiveness
+        transition: "background 0.1s ease-out",
       }}
     >
       <BrowserRouter>

@@ -10,14 +10,7 @@ import fire from "../assets/firebase.png";
 import sql from "../assets/sql.png";
 import mern from "../assets/MERN-logo.png";
 import react_native from "../assets/react_native.png";
-
-// Define initial positions for floating skills
-const getRandomPosition = () => ({
-  x: Math.random() * window.innerWidth - 100,
-  y: Math.random() * window.innerHeight - 100,
-});
-
-function Skills() {
+const Skills = () => {
   const [skills] = useState([
     { name: "JAVA", logo: java },
     { name: "JAVASCRIPT", logo: js },
@@ -31,93 +24,144 @@ function Skills() {
     { name: "BOOTSTRAP", logo: bootstrap },
   ]);
 
-  const [activeSkill, setActiveSkill] = useState(null);
+  const [tiltValues, setTiltValues] = useState({ x: 0, y: 0 });
   const controls = useAnimation();
 
-  // Effect for random floating movement, starts immediately on mount
+  // Handle device tilt
   useEffect(() => {
-    // Immediately start floating animation when page loads
-    controls.start((i) => ({
-      x: getRandomPosition().x,
-      y: getRandomPosition().y,
-      transition: { duration: 5, ease: "easeInOut" },
-    }));
+    const handleOrientation = (event) => {
+      const x = event.beta ? event.beta / 180 : 0; // Convert to normalized value
+      const y = event.gamma ? event.gamma / 90 : 0; // Convert to normalized value
+      setTiltValues({ x, y });
+    };
 
-    // Continue to move icons every 5 seconds
-    const interval = setInterval(() => {
-      if (!activeSkill) {
-        controls.start((i) => ({
-          x: getRandomPosition().x,
-          y: getRandomPosition().y,
-          transition: { duration: 5, ease: "easeInOut" },
-        }));
-      }
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [activeSkill, controls]);
-
-  // Handle hover/click to bring skill to center
-  const handleSkillClick = (skill) => {
-    if (activeSkill === skill.name) {
-      setActiveSkill(null); // Deselect skill
-    } else {
-      setActiveSkill(skill.name); // Activate skill
-      controls.start({
-        x: window.innerWidth / 2 - 50, // Move to center
-        y: window.innerHeight / 2 - 50,
-        scale: 1.5, // Scale up
-        transition: { duration: 0.8, ease: "easeOut" },
-      });
+    // Check if device orientation is supported
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', handleOrientation);
     }
+
+    return () => {
+      if (window.DeviceOrientationEvent) {
+        window.removeEventListener('deviceorientation', handleOrientation);
+      }
+    };
+  }, []);
+
+  // Handle mouse movement for desktop
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      const x = (event.clientY / window.innerHeight - 0.5) * 2;
+      const y = (event.clientX / window.innerWidth - 0.5) * 2;
+      setTiltValues({ x, y });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Floating animation
+  useEffect(() => {
+    const startFloating = async () => {
+      await controls.start("visible"); // First complete the entrance animation
+
+      // Then start the floating animation
+      controls.start((i) => ({
+        x: `${Math.sin((Date.now() + i * 1000) / 2000) * 100 + tiltValues.y * 50}px`,
+        y: `${Math.cos((Date.now() + i * 1000) / 2000) * 100 + tiltValues.x * 50}px`,
+        transition: {
+          duration: 0.1,
+          repeat: Infinity,
+          repeatType: "reverse",
+        },
+      }));
+    };
+
+    startFloating();
+  }, [controls, tiltValues]);
+
+  // Variants for animations
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const skillVariants = {
+    hidden: {
+      y: 1000,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        damping: 20,
+        stiffness: 100,
+      },
+    },
   };
 
   return (
-    <section className="bg-transparent text-white h-screen overflow-hidden">
-      <div className="container mx-auto px-4">
-        <h2 className="text-xl md:text-3xl font-extrabold mb-8 text-center bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent">
-          My Skillset
-        </h2>
+    <section className="bg-transparent text-white h-screen overflow-hidden relative">
+      <motion.h2
+        className="text-4xl md:text-5xl font-extrabold pt-8 mb-12 text-center"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <span className="bg-gradient-to-r from-green-300 via-green-500 to-green-700 bg-clip-text text-transparent">
+          My SkillSet
+        </span>
+      </motion.h2>
 
-        {/* Floating Skills */}
+      <motion.div
+        className="flex justify-center items-center flex-wrap gap-8 relative h-[70vh]"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {skills.map((skill, index) => (
           <motion.div
             key={skill.name}
             custom={index}
-            className="absolute cursor-pointer"
-            animate={controls}
-            initial={{
-              x: getRandomPosition().x,
-              y: getRandomPosition().y,
+            variants={skillVariants}
+            className="absolute"
+            style={{
+              left: `${(index % 5) * 20 + 10}%`,
+              top: `${Math.floor(index / 5) * 25 + 20}%`,
             }}
             whileHover={{
               scale: 1.2,
+              zIndex: 10,
               transition: { duration: 0.3 },
             }}
-            onClick={() => handleSkillClick(skill)}
-            style={
-              activeSkill === skill.name
-                ? { zIndex: 999 } // Bring active skill to front
-                : {}
-            }
           >
-            <motion.img
-              src={skill.logo}
-              alt={skill.name}
-              className="w-16 h-16 object-contain rounded-lg shadow-lg transform transition-all duration-300"
-            />
-            <motion.p
-              className="text-center mt-2 font-semibold text-sm text-green-400"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              {skill.name}
-            </motion.p>
+            <div className="group relative">
+              <motion.div
+                className="absolute -inset-1 rounded-lg  blur-sm group-hover:opacity-75 transition duration-300"
+              />
+              <div className="relative bg-transparent rounded-lg p-2">
+                <motion.img
+                  src={skill.logo}
+                  alt={skill.name}
+                  className="w-16 h-16 object-contain"
+                />
+                <motion.p
+                  className="text-center mt-2 font-semibold text-sm text-green-400"
+                >
+                  {skill.name}
+                </motion.p>
+              </div>
+            </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
-}
+};
 
 export default Skills;
